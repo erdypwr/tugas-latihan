@@ -62,3 +62,11 @@ function checkWeather() {
 }
 
 checkWeatherBtn.addEventListener("click", checkWeather);
+
+// Tambahkan event listener untuk tombol "Enter" pada input field
+cityInput.addEventListener("keydown", (event) => {
+  // Cek jika tombol yang ditekan adalah "Enter"
+  if (event.key === "Enter") {
+    checkWeather();
+  }
+});
