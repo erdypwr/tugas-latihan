@@ -35,7 +35,6 @@ function checkWeather() {
     resultDiv.innerHTML = "Nama kota tidak boleh kosong!";
     resultDiv.style.color = "red";
     return;
-<<<<<<< HEAD
   }
 
   const formattedCity = formatCityName(rawCity);
@@ -69,32 +68,5 @@ cityInput.addEventListener("keydown", (event) => {
   // Cek jika tombol yang ditekan adalah "Enter"
   if (event.key === "Enter") {
     checkWeather();
-=======
->>>>>>> def4845974bc388450898c293e3e043cd81eef01
   }
-
-  const formattedCity = formatCityName(rawCity);
-  const weather = weatherData[formattedCity];
-
-  resultDiv.style.color = "black"; // Reset warna teks
-
-  if (weather) {
-    // Data ditemukan, tampilkan hasilnya
-    resultDiv.innerHTML = `
-      <div class="weather-info">
-        <h3>Cuaca di <b>${formattedCity}</b></h3>
-        <p class="icon">${weather.icon}</p>
-        <p>Suhu: ${weather.temperature}°C</p>
-        <p>Kondisi: ${weather.condition}</p>
-      </div>
-    `;
-    console.log(`Cuaca di ${formattedCity}: Suhu ${weather.temperature}°C, Kondisi ${weather.condition}`);
-  } else {
-    // Data tidak ditemukan
-    resultDiv.innerHTML = `Data cuaca untuk kota <b>${formattedCity}</b> tidak ditemukan.`;
-    console.log(`Data cuaca tidak ditemukan untuk kota: ${formattedCity}`);
-  }
-  cityInput.value = ""; // Kosongkan input setelah pengecekan
-}
-
-checkWeatherBtn.addEventListener("click", checkWeather);
+});
