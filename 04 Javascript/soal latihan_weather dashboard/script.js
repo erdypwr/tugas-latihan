@@ -1,31 +1,64 @@
-// Simulasi data cuaca
+// Simulasi data cuaca yang lebih kaya dengan ikon
 const weatherData = {
-  "Jakarta": { temperature: 30, condition: "Cerah" },
-  "Bandung": { temperature: 22, condition: "Hujan Ringan" },
-  "Surabaya": { temperature: 32, condition: "Panas Terik" },
-  "Semarang": { temperature: 29, condition: "Mendung" }
+  "Jakarta": { temperature: 30, condition: "Cerah", icon: "☀️" },
+  "Bandung": { temperature: 22, condition: "Hujan Ringan", icon: "🌦️" },
+  "Surabaya": { temperature: 32, condition: "Panas Terik", icon: "🔥" },
+  "Semarang": { temperature: 29, condition: "Mendung", icon: "☁️" },
+  "Yogyakarta": { temperature: 28, condition: "Berawan", icon: "🌥️" },
+  "Medan": { temperature: 31, condition: "Badai Petir", icon: "⛈️" },
+  "Makassar": { temperature: 33, condition: "Cerah Berawan", icon: "🌤️" },
+  "Denpasar": { temperature: 29, condition: "Cerah", icon: "☀️" }
 };
 
-document.getElementById("checkWeather").addEventListener("click", () => {
-  const city = document.getElementById("cityInput").value;
-  const resultDiv = document.getElementById("result");
+// Mengambil elemen dari DOM
+const cityInput = document.getElementById("cityInput");
+const checkWeatherBtn = document.getElementById("checkWeather");
+const resultDiv = document.getElementById("result");
 
-  if (weatherData[city]) {
-    const weather = weatherData[city];
+/**
+ * Fungsi untuk memformat input kota (huruf pertama kapital).
+ * @param {string} input - Nama kota dari input pengguna.
+ * @returns {string} Nama kota yang sudah diformat.
+ */
+function formatCityName(input) {
+  if (!input) return "";
+  return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+}
 
-    // Menampilkan di halaman
-    resultDiv.innerHTML = `
-      Cuaca di <b>${city}</b><br>
-      Suhu: ${weather.temperature}°C<br>
-      Kondisi: ${weather.condition}
-    `;
+/**
+ * Fungsi utama untuk memeriksa cuaca.
+ */
+function checkWeather() {
+  const rawCity = cityInput.value.trim();
 
-    // Menampilkan di console log
-    console.log(`Cuaca di ${city}:`);
-    console.log(`Suhu: ${weather.temperature}°C`);
-    console.log(`Kondisi: ${weather.condition}`);
-  } else {
-    resultDiv.innerHTML = "Data cuaca tidak ditemukan!";
-    console.log("Data cuaca tidak ditemukan untuk kota:", city);
+  if (!rawCity) {
+    resultDiv.innerHTML = "Nama kota tidak boleh kosong!";
+    resultDiv.style.color = "red";
+    return;
   }
-});
+
+  const formattedCity = formatCityName(rawCity);
+  const weather = weatherData[formattedCity];
+
+  resultDiv.style.color = "black"; // Reset warna teks
+
+  if (weather) {
+    // Data ditemukan, tampilkan hasilnya
+    resultDiv.innerHTML = `
+      <div class="weather-info">
+        <h3>Cuaca di <b>${formattedCity}</b></h3>
+        <p class="icon">${weather.icon}</p>
+        <p>Suhu: ${weather.temperature}°C</p>
+        <p>Kondisi: ${weather.condition}</p>
+      </div>
+    `;
+    console.log(`Cuaca di ${formattedCity}: Suhu ${weather.temperature}°C, Kondisi ${weather.condition}`);
+  } else {
+    // Data tidak ditemukan
+    resultDiv.innerHTML = `Data cuaca untuk kota <b>${formattedCity}</b> tidak ditemukan.`;
+    console.log(`Data cuaca tidak ditemukan untuk kota: ${formattedCity}`);
+  }
+  cityInput.value = ""; // Kosongkan input setelah pengecekan
+}
+
+checkWeatherBtn.addEventListener("click", checkWeather);
