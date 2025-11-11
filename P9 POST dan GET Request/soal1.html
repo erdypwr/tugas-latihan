@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soal 1 - Hitung Saldo Akhir</title>
+</head>
+<body>
+    <h1>Menghitung Saldo Akhir dengan Bunga</h1>
+    <form method="post" action="soal1_proses.php">
+        <table>
+            <tr>
+                <td>Saldo Awal</td>
+                <td>:</td>
+                <td><input type="number" name="saldo_awal" value="1000000" required></td>
+            </tr>
+            <tr>
+                <td>Bunga per Bulan (%)</td>
+                <td>:</td>
+                <td><input type="number" step="0.01" name="bunga" value="0.25" required></td>
+            </tr>
+            <tr>
+                <td>Lama Bulan</td>
+                <td>:</td>
+                <td><input type="number" name="bulan" value="11" required></td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" name="submit" value="Hitung Saldo Akhir">
+        <input type="reset" name="reset" value="Reset">
+    </form>
+    
+    <p><strong>Contoh:</strong> Saldo awal Rp. 1.000.000, bunga 0.25% per bulan, selama 11 bulan</p>
+</body>
+</html>

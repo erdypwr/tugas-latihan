@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soal 3 - Pendaftaran Mahasiswa Baru</title>
+</head>
+<body>
+    <h1>Form Pendaftaran Mahasiswa Baru - Universitas X</h1>
+    <form method="post" action="soal3_proses.php">
+        <table cellpadding="8">
+            <tr>
+                <td width="150">Nama Lengkap</td>
+                <td>:</td>
+                <td><input type="text" name="nama" size="30" placeholder="Masukkan nama lengkap" required></td>
+            </tr>
+            <tr>
+                <td>Tempat Lahir</td>
+                <td>:</td>
+                <td><input type="text" name="tempat_lahir" placeholder="Masukkan tempat lahir" required></td>
+            </tr>
+            <tr>
+                <td>Tanggal Lahir</td>
+                <td>:</td>
+                <td>
+                    <select name="tanggal" required style="padding: 5px;">
+                        <option value="">- Tanggal -</option>
+                        <?php for ($i = 1; $i <= 31; $i++): ?>
+                            <option value="<?php echo sprintf('%02d', $i); ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                    
+                    <select name="bulan" required style="padding: 5px;">
+                        <option value="">- Bulan -</option>
+                        <?php for ($i = 1; $i <= 12; $i++): ?>
+                            <option value="<?php echo sprintf('%02d', $i); ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                    
+                    <select name="tahun" required style="padding: 5px;">
+                        <option value="">- Tahun -</option>
+                        <?php for ($i = 1980; $i <= 2005; $i++): ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Alamat Rumah</td>
+                <td>:</td>
+                <td><textarea name="alamat" rows="3" cols="30" placeholder="Masukkan alamat lengkap" required></textarea></td>
+            </tr>
+            <tr>
+                <td>Jenis Kelamin</td>
+                <td>:</td>
+                <td>
+                    <input type="radio" name="jenis_kelamin" value="Pria" required> Pria
+                    <input type="radio" name="jenis_kelamin" value="Wanita"> Wanita
+                </td>
+            </tr>
+            <tr>
+                <td>Asal Sekolah</td>
+                <td>:</td>
+                <td><input type="text" name="asal_sekolah" size="30" placeholder="Masukkan asal sekolah" required></td>
+            </tr>
+            <tr>
+                <td>Nilai UAN</td>
+                <td>:</td>
+                <td><input type="number" step="0.01" name="nilai_uan" placeholder="Masukkan nilai UAN" min="0" max="100" required></td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" name="submit" value="Daftar" style="padding: 8px 15px;">
+        <input type="reset" name="reset" value="Reset" style="padding: 8px 15px;">
+    </form>
+</body>
+</html>
